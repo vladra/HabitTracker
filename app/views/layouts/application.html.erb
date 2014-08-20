@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <title>Habits Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="pure-g header">
+      <div class="pure-u-1 container">
+        <h1 class="app-title">Habit<span class="red">Track</span></h3>
+      </div>
+  </div>
+
+  <div class="container">
+		<%= yield %>
+	</div>
+
+<div>
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end -%>
+</div>
+</body>
+</html>

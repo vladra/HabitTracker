@@ -1,0 +1,30 @@
+<div class="pure-g mar-10">
+	<div class="pure-u-1 pure-u-md-1-2">
+		<h1>Sign up</h2>
+	</div>
+
+	<div class="pure-u-1 pure-u-md-1-2">
+
+		<%= form_for @user, url: user_path, html: { class: 'pure-form pure-form-aligned' } do |f| %>
+			<fieldset>
+				<div class="pure-control-group">
+					<%= f.label :email, "Email" %>
+					<%= f.text_field :email %>
+				</div>
+				<div class="pure-control-group">
+					<%= f.label :password, "Password" %>
+					<%= f.password_field :password %>
+				</div>
+				<div class="pure-control-group">
+					<%= f.label :password_confirmation, "Password Confirmation" %>
+					<%= f.password_field :password_confirmation %>
+				</div>
+				<div class="pure-control-group">
+					<label></label>
+					<%= f.submit "Sign up", class: 'pure-button pure-button-primary', :disable_with => 'Submiting...' %>
+				</div>
+			</fieldset>
+		<% end %>
+
+	</div>
+</div>

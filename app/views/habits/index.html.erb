@@ -1,0 +1,76 @@
+<div id="new-habits">
+	<div class="pure-g">
+
+		<div class="pure-u-1-2">
+			<div class="mar-10 center">
+				<%= link_to "Add good habit", nil, class: 'pure-button good-button' %>
+			</div>
+		</div>
+
+		<div class="pure-u-1-2">
+			<div class="mar-10 center">
+				<%= link_to "Add bad habit", new_habit_path, class: 'pure-button bad-button' %>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id="habits">
+	<% @habits.each do |habit| %>
+		<div class="<%= habit.kind %>-habit mar-tb-10">
+			<div class="pure-g">
+
+				<div class="pure-u-1-2">
+					<div class="mar-10">
+						<p><%= habit.title %></p>
+					</div>
+				</div>
+
+				<div class="pure-u-1-2">
+					<div class="mar-10 center">
+						<p><%= habit_progress(habit) %></p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<div id="habit-form-container">
+	<div id="habit-form" class="pure-g">
+		<div class="pure-u-1">
+			<%= form_for :habit, html: { class: 'pure-form mar-10' } do |f| %>
+
+				<div class="pure-g">
+					<div class="pure-u-1-2 center">
+						<%= f.label :kind_good, class: 'pure-radio' do %>
+							<%= f.radio_button :kind, :good %>
+							Good habit
+						<% end %>
+					</div>
+					<div class="pure-u-1-2 center">
+						<%= f.label :kind_bad, class: 'pure-radio' do %>
+							<%= f.radio_button :kind, :bad %>
+							Bad habit
+						<% end %>
+					</div>
+				</div>
+
+				<fieldset>
+					<%= f.text_field :title, class: 'pure-input-1 center', placeholder: 'Enter your habit' %>
+					<%= f.text_field :goal, class: 'pure-input-1 center', placeholder: 'Your goal (number)' %>
+					<div class="pure-control-group center mar-tb-10">
+						<%= f.label :goal, 'Period to track:' %>
+						<%= f.select :goal, [['Week', :week]] %>
+					</div>
+					<div class="center">
+						<%= f.submit "Create habit", class: 'pure-input-1 pure-button' %>
+					</div>
+				</fieldset>
+
+			<% end %>
+		</div>
+	</div>
+</div>

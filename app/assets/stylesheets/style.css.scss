@@ -1,0 +1,74 @@
+// HELPERS
+.center {
+	text-align: center;
+}
+
+// STYLES
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+    /* Set your content font stack here: */
+    font-family: Georgia, Times, "Times New Roman", serif;
+}
+html, body {
+	background-color: $turquoise;
+	color: $cloud;
+}
+.container {
+	max-width: 768px;
+	margin: auto;
+}
+// HEADER
+.header {
+	background-color: $asphalt;
+	color: $lime;
+	padding-left: 10%;
+}
+.red {
+	color: $red;
+}
+
+// HABITS
+#habits {
+	font-size: 1.2em;
+}
+.good-habit {
+	background-color: $asphalt;
+	border: 1px solid $lime;
+	.done {
+		color: $lime;
+	}
+}
+.bad-habit {
+	background-color: $asphalt;
+	border: 1px solid $red;
+	.done {
+		color: $red;
+	}
+}
+#habit-form-container {
+	display: none;
+	position: absolute;
+	background-color: rgba(189, 195, 199,0.9);
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+#habit-form {
+	display: none;
+	background-color: $asphalt;
+	position: absolute;
+	width: 400px;
+	max-width: 100%;
+	margin: 0 auto;
+	top: 0%;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+}
+// BUTTONS
+.good-button {
+	background-color: $lime;
+}
+.bad-button {
+	background-color: $red;
+}

@@ -1,0 +1,14 @@
+// Offsets
+@mixin offset($tb, $lr) {
+	margin: $tb $lr;
+}
+
+.mar-tb-10 {
+	@include offset(10px, 0px);
+}
+.mar-lr-10 {
+	@include offset(0px, 10px);
+}
+.mar-10 {
+	@include offset(10px, 10px);
+}
