@@ -2,15 +2,28 @@ class HabitsController < ApplicationController
 	before_filter :require_login
 
 	def index
-		@habits = current_user.habits
+		@habits = current_user.habits.order(:order)
 	end
 
 	def create
-		sleep 1
 		@habit = Habit.new(habit_params)
-		@habit.done = 0
+		@habit.user = current_user
 		respond_to do |format|
-			format.js
+			if @habit.save
+				format.js
+			else
+				format.json { render json: @habit.errors, status: :unprocessable_entity }
+			end
+    end
+	end
+
+	def update
+		sleep 1
+		@habit = Habit.find(params[:id])
+		@habit.update(done: params[:habit][:done])
+		@habit.save
+		respond_to do |format|
+			format.json { render json: @habit }
     end
 	end
 

@@ -65,6 +65,13 @@ html, body {
 	right: 0;
 	overflow: hidden;
 }
+.progress {
+	cursor: pointer;
+}
+.link {
+	text-decoration: none;
+	color: inherit;
+}
 // BUTTONS
 .good-button {
 	background-color: $lime;
