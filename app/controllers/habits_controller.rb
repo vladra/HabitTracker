@@ -5,13 +5,19 @@ class HabitsController < ApplicationController
 		@habits = current_user.habits.order(:order)
 	end
 
+	def edit
+		@habits = current_user.habits.order(:order)
+	end
+
 	def create
+		sleep 1
 		@habit = Habit.new(habit_params)
 		@habit.user = current_user
 		respond_to do |format|
 			if @habit.save
 				format.js
 			else
+				puts @habit.errors.inspect
 				format.json { render json: {errors: @habit.errors}, status: 422 }
 			end
     end
@@ -21,7 +27,6 @@ class HabitsController < ApplicationController
 		sleep 1
 		@habit = Habit.find(params[:id])
 		@habit.update(done: params[:habit][:done])
-		@habit.save
 		respond_to do |format|
 			format.json { render json: @habit }
     end
