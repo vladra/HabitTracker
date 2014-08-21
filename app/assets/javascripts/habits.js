@@ -32,6 +32,9 @@ function addNewHabitForm() {
 		$('#overlay').click();
 	});
 	// AJAX response logic for create new habit request
+	$('#habit-form').on('ajax:beforeSend', function(e, data, status, xhr) {
+		$(this).find('input').removeClass('wrong-input');
+	});
 	$('#habit-form').on('ajax:success', function(e, data, status, xhr) {
 		$('#overlay').click();
 	});
