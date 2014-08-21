@@ -9,9 +9,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="pure-g header">
-      <div class="pure-u-1 container">
-        <h1 class="app-title">Habit<span class="red">Track</span></h3>
+	<div class="pure-g header-container">
+      <div class="pure-u-1 container header">
+        <h1 class="app-title"><%= link_to "Habit<span class='red'>Track</span>".html_safe, root_path  %></h3>
+        <div class="header-menu">
+          <i id='menu' class='icon-cog'></i>
+        </div>
       </div>
   </div>
 

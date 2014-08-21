@@ -17,10 +17,20 @@ html, body {
 	margin: auto;
 }
 // HEADER
-.header {
+.header-container {
 	background-color: $asphalt;
 	color: $lime;
 	padding-left: 10%;
+}
+.header {
+	position: relative;
+}
+.header-menu {
+	position: absolute;
+	left: 80%;
+	top: 0;
+	font-size: 2em;
+	color: $turquoise;
 }
 .red {
 	color: $red;
@@ -71,7 +81,7 @@ input.wrong-input {
 .progress {
 	cursor: pointer;
 }
-.link {
+a {
 	text-decoration: none;
 	color: inherit;
 }
