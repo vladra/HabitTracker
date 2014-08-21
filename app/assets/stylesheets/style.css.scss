@@ -44,7 +44,7 @@ html, body {
 		color: $red;
 	}
 }
-#habit-form-container {
+#overlay {
 	display: none;
 	position: absolute;
 	background-color: rgba(189, 195, 199,0.9);
@@ -71,4 +71,7 @@ html, body {
 }
 .bad-button {
 	background-color: $red;
+}
+.close-button {
+	font-size: 2em;
 }
