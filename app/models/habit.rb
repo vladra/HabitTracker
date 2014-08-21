@@ -3,6 +3,10 @@ class Habit < ActiveRecord::Base
 
 	validates :title, presence: true
 	validates :goal, numericality: { only_integer: true, greater_then: 0 }
+	validates :done, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+	validates :period, inclusion: { in: %w(week) }
+	validates :kind, inclusion: { in: %w(good bad) }
 
-	before_create { |habit| habit.done = 0 }
+	before_validation(on: :create) { |habit| habit.done = 0; habit.order = habit.user.habits.length }
+
 end
