@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+  root "habits#index"
   resource :user, only: [:new, :create, :edit, :update], path_names: { new: 'sign_up' }
-  resources :habits
+  resources :habits, only: [:index, :create, :update, :destroy] do
+    get 'edit', on: :collection
+  end
   get 'login', to:'sessions#new'
   post 'login', to:'sessions#create'
   post 'logout', to:'sessions#destroy'

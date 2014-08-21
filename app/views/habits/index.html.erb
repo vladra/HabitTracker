@@ -9,7 +9,7 @@
 
 		<div class="pure-u-1-2">
 			<div class="mar-10 center">
-				<%= link_to "Add bad habit", new_habit_path, class: 'pure-button bad-button' %>
+				<%= link_to "Add bad habit", nil, class: 'pure-button bad-button' %>
 			</div>
 		</div>
 
@@ -24,7 +24,7 @@
 <div id="habit-form" class="pure-g">
 	<div class="pure-u-1">
 
-		<%= form_for :habit, remote: true, html: { class: 'pure-form mar-10' } do |f| %>
+		<%= form_for :habit, url: habits_path, method: :post, remote: true, html: { class: 'pure-form mar-10' } do |f| %>
 			<div class="pure-g">
 				<div class="pure-u-1-2 center">
 					<%= f.label :kind_good, class: 'pure-radio' do %>
