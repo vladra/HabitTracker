@@ -65,6 +65,9 @@ html, body {
 	right: 0;
 	overflow: hidden;
 }
+input.wrong-input {
+	border-color: $red !important;
+}
 .progress {
 	cursor: pointer;
 }

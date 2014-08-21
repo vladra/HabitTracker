@@ -31,12 +31,18 @@ function addNewHabitForm() {
 		e.preventDefault();
 		$('#overlay').click();
 	});
-	// hide form on ajax:success
+	// AJAX response logic for create new habit request
 	$('#habit-form').on('ajax:success', function(e, data, status, xhr) {
 		$('#overlay').click();
 	});
 	$('#habit-form').on('ajax:error', function(e, xhr, status, error) {
-		console.log( $(this).find('#habit_title').attr('placeholder', 'Habit title cant be blank') );
+		var errors = xhr.responseJSON.errors;
+		if (errors.title) {
+			$('input#habit_title').attr('placeholder', 'Habit title can\'t be blank').addClass('wrong-input');
+		}
+		if (errors.goal) {
+			$('input#habit_goal').attr('placeholder', 'Goal must be a number').addClass('wrong-input');
+		}
 	});
 }
 

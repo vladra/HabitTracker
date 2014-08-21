@@ -12,7 +12,7 @@ class HabitsController < ApplicationController
 			if @habit.save
 				format.js
 			else
-				format.json { render json: @habit.errors, status: :unprocessable_entity }
+				format.json { render json: {errors: @habit.errors}, status: 422 }
 			end
     end
 	end
