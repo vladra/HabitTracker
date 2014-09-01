@@ -3,6 +3,7 @@ $(document).on('ready page:load', function() {
 	habitProgress();
 	hideAddNewHabitForm();
 	bindRadio();
+	showMenu();
 });
 
 ///////////////////////////////
@@ -52,7 +53,7 @@ function addNewHabitForm() {
 function hideAddNewHabitForm() {
 	$('#overlay').click(function(e) {
 		e.preventDefault();
-		$('#habit-form').animate({
+		$('.modal').animate({
 			top: '0',
 			opacity: 'hide'
 		}, 'fast', function() {
@@ -74,7 +75,7 @@ function bindRadio() {
 ////////////////////////////////////////////
 // CLICK EVENTS TO UPDATE HABIT PROGRESS  //
 ////////////////////////////////////////////
-var requestInProgress = false
+var requestInProgress = false;
 function habitProgress() {
 	$('.progress').click(progressAjaxRequest);
 }
@@ -116,3 +117,40 @@ function progressAjaxRequest() {
 		}
 	}
 }
+
+/////////////////
+// MENU BUTTON //
+/////////////////
+function showMenu() {
+	$('#menu').click(function(e) {
+		$('#overlay').show();
+		$('#settings').animate({
+			top: '30%',
+			opacity: 'show'
+		}, 'slow', 'easeOutBounce');
+	});
+
+	$('#settings-form').on('ajax:beforeSend', function(e, data, status, xhr) {
+		$(this).find('input').removeClass('wrong-input');
+	});
+	$('#settings-form').on('ajax:error', function(e, xhr, status, error) {
+		var errors = xhr.responseJSON.errors;
+		if (errors.email) {
+			$('input#user_email').attr('placeholder', 'Please enter correct email').addClass('wrong-input');
+		}
+		if (errors.password) {
+			$('input#user_password').attr('placeholder', 'Please enter password').addClass('wrong-input');
+		}
+		if (errors.password_confirmation) {
+			$('input#user_password_confirmation').attr('placeholder', 'Password should match').addClass('wrong-input');
+	}
+});
+}
+
+
+
+
+
+
+
+

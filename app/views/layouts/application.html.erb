@@ -12,20 +12,50 @@
 	<div class="pure-g header-container">
       <div class="pure-u-1 container header">
         <h1 class="app-title"><%= link_to "Habit<span class='red'>Track</span>".html_safe, root_path  %></h3>
-        <div class="header-menu">
-          <i id='menu' class='icon-cog'></i>
-        </div>
+        <% if current_user %>
+          <div class="header-menu">
+            <i id='menu' class='icon-cog'></i>
+          </div>
+        <% end %>
       </div>
   </div>
 
+  <div id="overlay"></div>
   <div class="container">
 		<%= yield %>
 	</div>
+
+  <div id="settings" class="pure-g modal">
+    <div class="pure-u-1">
+      <h3 class="center">Edit profile</h3>
+      <%= form_for current_user, remote: true, html: { class: 'pure-form pure-form-aligned', id: 'settings-form'} do |f| %>
+        <fieldset>
+          <div class="pure-control-group">
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+          </div>
+          <div class="pure-control-group">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+          </div>
+          <div class="pure-control-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="pure-control-group">
+            <label></label>
+            <%= f.submit 'Save', class: 'pure-button', data: { disable_with: "Saving..."} %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
 
 <div>
   <% flash.each do |name, msg| -%>
     <%= content_tag :div, msg, class: name %>
   <% end -%>
 </div>
+
 </body>
 </html>

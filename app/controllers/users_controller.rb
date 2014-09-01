@@ -13,12 +13,15 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def edit
-
-	end
-
 	def update
-
+		@user = current_user
+		respond_to do |format|
+			if @user.update(user_params)
+				format.js
+			else
+				format.json { render json: {errors: @user.errors}, status: 422 }
+			end
+		end
 	end
 
 private

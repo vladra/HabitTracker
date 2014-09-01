@@ -17,7 +17,6 @@ class HabitsController < ApplicationController
 			if @habit.save
 				format.js
 			else
-				puts @habit.errors.inspect
 				format.json { render json: {errors: @habit.errors}, status: 422 }
 			end
     end

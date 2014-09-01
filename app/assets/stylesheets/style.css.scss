@@ -2,7 +2,13 @@
 .center {
 	text-align: center;
 }
-
+.right {
+	text-align: right;
+}
+// ALERTS
+.success {
+	color: $lime;
+}
 // STYLES
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
     /* Set your content font stack here: */
@@ -34,6 +40,23 @@ html, body {
 }
 .red {
 	color: $red;
+}
+#menu {
+	color: $lime;
+	cursor: pointer;
+}
+// SETTINGS
+#settings {
+	display: none;
+	background-color: $asphalt;
+	position: absolute;
+	width: 400px;
+	max-width: 100%;
+	margin: 0 auto;
+	top: 0%;
+	left: 0;
+	right: 0;
+	overflow: hidden;
 }
 
 // HABITS
@@ -84,6 +107,9 @@ input.wrong-input {
 a {
 	text-decoration: none;
 	color: inherit;
+}
+.edit-habits-link {
+	color: $asphalt;
 }
 // BUTTONS
 .good-button {
