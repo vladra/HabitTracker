@@ -108,8 +108,11 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
-.edit-habits-link {
+#edit-habits-link {
 	color: $asphalt;
+	text-decoration: underline;
+	cursor: pointer;
+	font-style: italic;
 }
 // BUTTONS
 .good-button {
