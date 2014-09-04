@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: habits_production
-  username: habits
-  password: <%= ENV['HABITS_DATABASE_PASSWORD'] %>

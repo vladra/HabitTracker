@@ -27,5 +27,10 @@ group :development do
 	gem 'binding_of_caller'
 end
 
+group :production do
+  gem 'thin'
+  gem 'rails_12factor' # for heroku
+end
+
 gem "sorcery" # authorization
 gem 'whenever', :require => false # repeated jobs
