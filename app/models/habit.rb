@@ -11,7 +11,6 @@ class Habit < ActiveRecord::Base
 
 	def self.monday_reset
 		update_all(done: 0)
-		puts 'Monday reset done'
 	end
 
 end
