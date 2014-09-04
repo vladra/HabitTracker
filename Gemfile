@@ -28,3 +28,4 @@ group :development do
 end
 
 gem "sorcery" # authorization
+gem 'whenever', :require => false # repeated jobs

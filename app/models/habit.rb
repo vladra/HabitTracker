@@ -9,4 +9,9 @@ class Habit < ActiveRecord::Base
 
 	before_validation(on: :create) { |habit| habit.done = 0; habit.order = habit.user.habits.length }
 
+	def self.monday_reset
+		update_all(done: 0)
+		puts 'Monday reset done'
+	end
+
 end
