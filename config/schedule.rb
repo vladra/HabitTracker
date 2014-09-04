@@ -1,4 +1,4 @@
-set :environment, 'development'
+set :output, "log/cron.log"
 
 every :monday, :at => '00:01' do
 	runner "Habit.monday_reset"
