@@ -15,7 +15,6 @@ class HabitsController < ApplicationController
 	end
 
 	def edit
-		sleep 1
 		@habit = Habit.find(params[:id])
 		respond_to do |format|
 			format.json { render json: {:habit => @habit} }
@@ -24,7 +23,6 @@ class HabitsController < ApplicationController
 	end
 
 	def create
-		sleep 1
 		@habit = Habit.new(habit_params)
 		@habit.user = current_user
 		respond_to do |format|
@@ -37,10 +35,8 @@ class HabitsController < ApplicationController
 	end
 
 	def update
-		sleep 1
 		@habit = Habit.find(params[:id])
 		@habit.update(habit_params)
-		# pry
 		respond_to do |format|
 			format.json { render json: @habit }
     end
