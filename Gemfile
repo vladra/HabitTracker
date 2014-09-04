@@ -33,4 +33,3 @@ group :production do
 end
 
 gem "sorcery" # authorization
-gem 'whenever', :require => false # repeated jobs
