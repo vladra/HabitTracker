@@ -5,8 +5,22 @@ class HabitsController < ApplicationController
 		@habits = current_user.habits.order(:order)
 	end
 
-	def edit
+	def edit_list
 		@habits = current_user.habits.order(:order)
+	end
+
+	def show
+		habit = Habit.find(params[:id])
+		render json: {:habit => habit}
+	end
+
+	def edit
+		sleep 1
+		@habit = Habit.find(params[:id])
+		respond_to do |format|
+			format.json { render json: {:habit => @habit} }
+			format.js
+		end
 	end
 
 	def create
@@ -25,7 +39,8 @@ class HabitsController < ApplicationController
 	def update
 		sleep 1
 		@habit = Habit.find(params[:id])
-		@habit.update(done: params[:habit][:done])
+		@habit.update(habit_params)
+		# pry
 		respond_to do |format|
 			format.json { render json: @habit }
     end
@@ -40,7 +55,7 @@ class HabitsController < ApplicationController
 private
 
 	def habit_params
-		params.require(:habit).permit(:title, :goal, :period, :kind)
+		params.require(:habit).permit(:title, :goal, :period, :kind, :done)
 	end
 
 end

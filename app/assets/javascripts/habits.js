@@ -4,8 +4,10 @@ $(document).on('ready page:load', function() {
 	hideAddNewHabitForm();
 	bindRadio();
 	showMenu();
+	editHabit();
 });
 
+var requestInProgress = false;
 ///////////////////////////////
 // ADD NEW HABIT FORM STUFF  //
 ///////////////////////////////
@@ -28,10 +30,6 @@ function addNewHabitForm() {
 			opacity: 'show'
 		}, 'slow', 'easeOutBounce');
 	});
-	$('#cancel-habit').click(function(e) {
-		e.preventDefault();
-		$('#overlay').click();
-	});
 	// AJAX response logic for create new habit request
 	$('#habit-form').on('ajax:beforeSend', function(e, data, status, xhr) {
 		$(this).find('input').removeClass('wrong-input');
@@ -53,13 +51,20 @@ function addNewHabitForm() {
 function hideAddNewHabitForm() {
 	$('#overlay').click(function(e) {
 		e.preventDefault();
-		$('.modal').animate({
-			top: '0',
-			opacity: 'hide'
-		}, 'fast', function() {
-			$('#overlay').hide();
-		});
-	})
+		if (!requestInProgress) {
+			$('.modal').animate({
+				top: '0',
+				opacity: 'hide'
+			}, 'fast', function() {
+				$('#overlay').hide();
+			});
+		}
+	});
+
+	$('#cancel-habit').click(function(e) {
+		e.preventDefault();
+		$('#overlay').click();
+	});
 }
 
 function bindRadio() {
@@ -75,7 +80,6 @@ function bindRadio() {
 ////////////////////////////////////////////
 // CLICK EVENTS TO UPDATE HABIT PROGRESS  //
 ////////////////////////////////////////////
-var requestInProgress = false;
 function habitProgress() {
 	$('.progress').click(progressAjaxRequest);
 }
@@ -150,8 +154,38 @@ function showMenu() {
 /////////////////////
 // EDIT HABIT LINK //
 /////////////////////
+function editHabit() {
+	$('.edit-habit-link').click(function(e) {
+		e.preventDefault();
+		if (!requestInProgress) {
+			requestInProgress = true;
+			$('#overlay').show();
+			var link = $(this).attr('href');
+			$('#habit-form form').attr('action', link);
 
+			$.getJSON(link, function( data ) {
+				var habit = data.habit;
+				fillHabitForm(habit);
+			})
+			.done(function() {
+				$('#habit-form').animate({
+					top: '30%',
+					opacity: 'show'
+				}, 'slow', 'easeOutBounce');
+				requestInProgress = false;
+			})
+		}
+	});
+}
 
+function fillHabitForm(habit) {
+	var kind = "#habit_kind_" + habit.kind;
+	$(kind).attr('checked', true).change();
+	$('#habit_title').val(habit.title);
+	$('#habit_goal').val(habit.goal);
+	$('#habit')
+	// $('#habit_period').val(habit.period);
+}
 
 
 

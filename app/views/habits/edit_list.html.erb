@@ -10,7 +10,7 @@
 
 			<div class="pure-u-1-2">
 				<div class="mar-10 center">
-					<%= link_to 'Edit', habit, class: 'pure-button edit-habit-link' %>
+					<%= link_to 'Edit', habit, class: 'pure-button edit-habit-link', data: {id: habit.id} %>
 					<%= link_to 'Destroy', habit, method: :delete, class: 'pure-button' %>
 				</div>
 			</div>
@@ -18,3 +18,5 @@
 		</div>
 	</div>
 <% end %>
+
+<%= render 'edit' %>
