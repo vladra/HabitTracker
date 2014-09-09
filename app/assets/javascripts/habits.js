@@ -5,6 +5,10 @@ $(document).on('ready page:load', function() {
 	bindRadio();
 	showMenu();
 	editHabit();
+
+	$('.habit-link').click(function(e) {
+		e.preventDefault();
+	});
 });
 
 var requestInProgress = false;
